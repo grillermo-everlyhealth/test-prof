@@ -128,12 +128,13 @@ module TestProf
         Result.new(@stacks, @stats)
       end
 
-      def track(factory)
+      def track(factory, strategy)
         return yield unless running?
         @depth += 1
         @current_stack << factory if config.flamegraph?
         @stats[factory][:total_count] += 1
         @stats[factory][:top_level_count] += 1 if @depth == 1
+        @stats[factory][strategy] += 1
         t1 = TestProf.now
         begin
           yield
@@ -158,7 +159,10 @@ module TestProf
             total_count: 0,
             top_level_count: 0,
             total_time: 0.0,
-            top_level_time: 0.0
+            top_level_time: 0.0,
+            build: 0,
+            create: 0,
+            build_stubbed: 0
           }
         end
         flush_stack

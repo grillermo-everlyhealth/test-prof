@@ -2,6 +2,10 @@
 
 ## master (unrealeased)
 
+## 1.0.9 (2022-02-15
+
+- Adds per factory strategy tracking to FactoryProf runs
+
 ## 1.0.8 (2022-02-15
 
 - Fixes the configuration of a printer for factory_prof runs

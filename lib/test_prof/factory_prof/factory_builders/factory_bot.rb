@@ -20,7 +20,7 @@ module TestProf
 
         def self.track(strategy, factory, &block)
           return yield unless strategy.create?
-          FactoryProf.track(factory, &block)
+          FactoryProf.track(factory, strategy, &block)
         end
       end
     end
